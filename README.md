@@ -11,5 +11,5 @@
  8. Logging
 
 
-# .htaccess and .htpasswd local in my local computer path  /users/huilianghuang/desktop/WebServer/public_html/pwd
-# 
+ .htaccess and .htpasswd local in my local computer path  /users/huilianghuang/desktop/WebServer/public_html/pwd
+ We can not figure out how to push the . file to Github, so we also upload a zip file that contains all the file include the .htaccess and .htpasswd inside. 
