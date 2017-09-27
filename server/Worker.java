@@ -41,13 +41,27 @@ public class Worker implements Runnable {
       logFile.writeLog(request, response, this.client);
       logFile.flush();
     } catch (BadRequestException e) {
-    }
-
+      try {
+        Response response = new Response400(null, null, "HTTP 1.1", null);
+        response.send(this.client.getOutputStream());
+        logFile.writeBadReqLod(this.client);
+      } catch (IOException e1) {
+        e1.printStackTrace();
+      }
+    } catch (Exception e) {
+      try {
+        Response response = new Response500(null, null, "HTTP 1.1", null);
+        response.send(this.client.getOutputStream());
+        logFile.writeIntErrLog(this.client);
+      } catch (IOException e1) {
+        e1.printStackTrace();
+      }
+    } finally {
       try {
         client.close();
       } catch (IOException e) {
         e.printStackTrace();
       }
     }
-  
-
+  }
+}
